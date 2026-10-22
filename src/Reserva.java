@@ -1,10 +1,14 @@
 import java.util.List;
+import java.time.LocalDate;
 
 public class Reserva implements ICalculable {
     private int idReserva;
     private int noches;
     private double precioNoche;
     private int numeroHabitaciones;
+    private LocalDate fechaEntrada;
+    private LocalDate fechaSalida;
+    private int cantidadPersonas;
 
     private Cliente cliente;
     private Hotel hotel;
