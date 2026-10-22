@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27e03cec-98b3-4ab4-9364-afc175bd9260" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/3P1G.controlador/Controlador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reserva.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClienteNoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/ClienteNoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DatosInvalidosException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/DatosInvalidosException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Habitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/Habitacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HabitacionEstandar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/HabitacionEstandar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HabitacionNoDisponibleException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/HabitacionNoDisponibleException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HabitacionSuperior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/HabitacionSuperior.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/Hotel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICalculable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/ICalculable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.vista/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/Reserva.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Suite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/Suite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,10 +37,10 @@
     &quot;accountId&quot;: &quot;77752166-ddba-4daa-8e1f-d85a7f6f4a9c&quot;
   }
 }</component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7,
-  "fromUser": false
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3L3X26NBHHYRjejkduLQG4Vuah3" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -46,9 +57,17 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mspm7/Documents/GitHub/3P1G"
+    "last_opened_file_path": "C:/Users/mspm7/Documents/GitHub/3P1G",
+    "node.js.detected.package.jshint": "true",
+    "node.js.selected.package.jshint": ""
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mspm7\Documents\GitHub\3P1G\src\3P1G.modelo" />
+      <recent name="C:\Users\mspm7\Documents\GitHub\3P1G\src\3P1G.vista" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
