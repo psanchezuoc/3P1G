@@ -1,3 +1,5 @@
+package grupofp.modelo;
+
 public class HabitacionEstandar extends Habitacion {
     private String tipoCama;
 

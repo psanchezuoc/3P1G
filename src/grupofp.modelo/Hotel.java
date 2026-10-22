@@ -1,3 +1,5 @@
+package grupofp.modelo;
+
 public class Hotel {
     private int idHotel;
     private String nombre;

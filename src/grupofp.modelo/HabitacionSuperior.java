@@ -1,3 +1,5 @@
+package grupofp.modelo;
+
 public class HabitacionSuperior extends Habitacion {
     private boolean tieneBalcon;
 

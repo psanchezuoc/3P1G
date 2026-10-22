@@ -1,3 +1,5 @@
+package grupofp.modelo;
+
 public abstract class Habitacion {
     protected String numero;
     protected int capacidad;

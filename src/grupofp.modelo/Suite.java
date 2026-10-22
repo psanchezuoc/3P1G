@@ -1,3 +1,5 @@
+package grupofp.modelo;
+
 public class Suite extends Habitacion {
     private boolean tieneJacuzzi;
 

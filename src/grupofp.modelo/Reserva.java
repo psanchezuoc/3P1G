@@ -1,3 +1,5 @@
+package grupofp.modelo;
+
 import java.util.List;
 import java.time.LocalDate;
 
