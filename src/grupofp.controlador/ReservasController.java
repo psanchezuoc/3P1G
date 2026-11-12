@@ -7,34 +7,26 @@ import grupofp.modelo.DatosInvalidosException;
 import grupofp.modelo.Habitacion;
 import grupofp.modelo.HabitacionNoDisponibleException;
 import grupofp.modelo.Reserva;
+
 import java.util.List;
 
-public class Controlador {
+public class ReservasController {
+    private final Datos datos;
 
-    private Datos datos;
-
-    public Controlador() {
-        this.datos = new Datos();
+    public ReservasController(Datos datos) {
+        this.datos = datos;
     }
 
     public Cliente buscarCliente(String email) throws ClienteNoEncontradoException {
         return datos.buscarCliente(email);
     }
 
-    public void registrarCliente(Cliente nuevoCliente) throws DatosInvalidosException {
-        datos.registrarCliente(nuevoCliente);
-    }
-
     public Habitacion buscarHabitacion(String numero) throws HabitacionNoDisponibleException {
         return datos.buscarHabitacion(numero);
     }
 
-    public void registrarHabitacion(Habitacion nuevaHabitacion) throws DatosInvalidosException {
-        datos.registrarHabitacion(nuevaHabitacion);
-    }
-
-    public void registrarReserva(Reserva nuevaReserva) throws DatosInvalidosException {
-        datos.registrarReserva(nuevaReserva);
+    public void registrarReserva(Reserva reserva) throws DatosInvalidosException {
+        datos.registrarReserva(reserva);
     }
 
     public List<Reserva> obtenerTodasLasReservas() {
