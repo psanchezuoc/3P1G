@@ -1,0 +1,10 @@
+# Archivos compilados
+out/
+target/
+
+# Configuraciones del IDE (IntelliJ)
+.idea/
+*.iml
+
+# Credenciales de base de datos
+config.properties
