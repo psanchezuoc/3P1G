@@ -1,22 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27e03cec-98b3-4ab4-9364-afc175bd9260" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/3P1G.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp.controlador/ClienteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp.controlador/HabitacionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp.controlador/ReservasController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp.vista/ClienteView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp.vista/Consola.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp.vista/HabitacionView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp.vista/MenuView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp.vista/ReservasView.java" afterDir="false" />
+    <list default="true" id="32388f67-2501-4352-8cdf-9940e29edb4f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/grupofp/controlador/ClienteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/controlador/Controlador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/controlador/HabitacionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/controlador/ReservasController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/dao/ClienteDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/Cliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/ClienteNoEncontradoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/Datos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/DatosInvalidosException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/Habitacion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/HabitacionEstandar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/HabitacionNoDisponibleException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/HabitacionSuperior.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/Hotel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/ICalculable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/Reserva.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/Suite.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/ClienteView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/Consola.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/HabitacionView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/MenuView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/ReservasView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/Vista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/3P1G.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/3P1G.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/estructura_base.sql" beforeDir="false" afterPath="$PROJECT_DIR$/estructura_base.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.controlador/ClienteController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grupofp.controlador/Controlador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.vista/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.controlador/HabitacionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.controlador/ReservasController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/Cliente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/ClienteNoEncontradoException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/Datos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/DatosInvalidosException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/Habitacion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/HabitacionEstandar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/HabitacionNoDisponibleException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/HabitacionSuperior.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/Hotel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/ICalculable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/Reserva.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/Suite.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/ClienteView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/Consola.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/HabitacionView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/MenuView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/ReservasView.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grupofp.vista/Vista.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp/dao/ClienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp/dao/ClienteDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,11 +67,6 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="Datos" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -44,85 +75,91 @@
     &quot;assignee&quot;: &quot;0DU5T0&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/psanchezuoc/3P1G.git",
-    "accountId": "c6d8242c-2c41-4af6-9942-36c139436241"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/psanchezuoc/3P1G.git&quot;,
+    &quot;accountId&quot;: &quot;77752166-ddba-4daa-8e1f-d85a7f6f4a9c&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7,
-  &quot;fromUser&quot;: false
 }</component>
-  <component name="ProjectId" id="3L3X26NBHHYRjejkduLQG4Vuah3" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="3M3orFHAiSUaXJAXT2Gj0AFi19M" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.ConexionDB.executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Controlador",
-    "ignore.virus.scanning.warn.message": "true",
+    "git-widget-placeholder": "Modulo__Clientes",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/safok/Documents/UOC_2026-2027/3P1G",
     "node.js.detected.package.jshint": "true",
     "node.js.selected.package.jshint": "",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mspm7\Documents\GitHub\3P1G\src\3P1G.modelo" />
-      <recent name="C:\Users\mspm7\Documents\GitHub\3P1G\src\3P1G.vista" />
-    </key>
+}]]></component>
+  <component name="RunManager" selected="Application.ConexionDB">
+    <configuration name="ConexionDB" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="grupofp.dao.ConexionDB" />
+      <module name="3P1G" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="grupofp.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="grupofp.vista.Main" />
+      <module name="3P1G" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="grupofp.vista.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ConexionDB" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
+        <option value="bundled-jdk-30f59d01ecdd-34e2839f716b-intellij.indexing.shared.core-IU-262.9437.185" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.9437.185" />
       </set>
     </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="27e03cec-98b3-4ab4-9364-afc175bd9260" name="Changes" comment="" />
-      <created>1792683517263</created>
+      <changelist id="32388f67-2501-4352-8cdf-9940e29edb4f" name="Changes" comment="" />
+      <created>1794588811138</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1792683517263</updated>
-      <workItem from="1792829784632" duration="1820000" />
-      <workItem from="1792945325164" duration="1739000" />
-      <workItem from="1794479865665" duration="9920000" />
+      <updated>1794588811138</updated>
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>
