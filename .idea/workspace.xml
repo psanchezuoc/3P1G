@@ -2,57 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32388f67-2501-4352-8cdf-9940e29edb4f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/grupofp/controlador/ClienteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/controlador/Controlador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/controlador/HabitacionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/controlador/ReservasController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/dao/ClienteDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/Cliente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/ClienteNoEncontradoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/Datos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/DatosInvalidosException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/Habitacion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/HabitacionEstandar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/HabitacionNoDisponibleException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/HabitacionSuperior.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/Hotel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/ICalculable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/Reserva.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/modelo/Suite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/ClienteView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/Consola.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/HabitacionView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/MenuView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/ReservasView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grupofp/vista/Vista.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/3P1G.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/3P1G.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/estructura_base.sql" beforeDir="false" afterPath="$PROJECT_DIR$/estructura_base.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.controlador/ClienteController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.controlador/Controlador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.controlador/HabitacionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.controlador/ReservasController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/Cliente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/ClienteNoEncontradoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/Datos.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/DatosInvalidosException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/Habitacion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/HabitacionEstandar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/HabitacionNoDisponibleException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/HabitacionSuperior.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/Hotel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/ICalculable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/Reserva.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.modelo/Suite.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/ClienteView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/Consola.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/HabitacionView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/MenuView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/ReservasView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp.vista/Vista.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grupofp/dao/ClienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp/dao/ClienteDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
