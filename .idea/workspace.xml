@@ -2,20 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27e03cec-98b3-4ab4-9364-afc175bd9260" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/3P1G.controlador/Controlador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp.controlador/Controlador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/grupofp.modelo/Datos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ClienteNoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/ClienteNoEncontradoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DatosInvalidosException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/DatosInvalidosException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Habitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/Habitacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HabitacionEstandar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/HabitacionEstandar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HabitacionNoDisponibleException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/HabitacionNoDisponibleException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HabitacionSuperior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/HabitacionSuperior.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/Hotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICalculable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/ICalculable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.vista/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/Reserva.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Suite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/3P1G.modelo/Suite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.controlador/Controlador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.modelo/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.modelo/ClienteNoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.modelo/ClienteNoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.modelo/DatosInvalidosException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.modelo/DatosInvalidosException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.modelo/Habitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.modelo/Habitacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.modelo/HabitacionEstandar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.modelo/HabitacionEstandar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.modelo/HabitacionNoDisponibleException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.modelo/HabitacionNoDisponibleException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.modelo/HabitacionSuperior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.modelo/HabitacionSuperior.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.modelo/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.modelo/Hotel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.modelo/ICalculable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.modelo/ICalculable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.modelo/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.modelo/Reserva.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.modelo/Suite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.modelo/Suite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3P1G.vista/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp.vista/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,19 +51,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mspm7/Documents/GitHub/3P1G",
-    "node.js.detected.package.jshint": "true",
-    "node.js.selected.package.jshint": ""
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mspm7/Documents/GitHub/3P1G&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mspm7\Documents\GitHub\3P1G\src\3P1G.modelo" />
