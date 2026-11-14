@@ -22,3 +22,17 @@ DELIMITER ;
 --   ('101', 2, 80.00, 'Estándar', 'Doble', 1),
 --   ('201', 3, 120.00, 'Superior', 'true', 1),
 --   ('301', 4, 250.00, 'Suite', 'true', 1);
+
+USE hotel_management_db;
+
+DROP PROCEDURE IF EXISTS BuscarClientePorApellido;
+
+DELIMITER //
+CREATE PROCEDURE BuscarClientePorApellido(IN p_apellido VARCHAR(100))
+BEGIN
+    SELECT id_cliente, nombre, apellido, email
+    FROM clientes
+    WHERE apellido LIKE CONCAT('%', p_apellido, '%')
+ORDER BY apellido, nombre;
+END //
+DELIMITER ;

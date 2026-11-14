@@ -3,10 +3,7 @@ package grupofp.dao;
 public class MySQLDAOFactory extends DAOFactory {
 
     @Override
-    public ClienteDAO getClienteDAO() {
-        // La Persona 2 cambiará esto por: return new ClienteDAOImpl();
-        return null;
-    }
+    public ClienteDAO getClienteDAO() { return new ClienteDAOImpl(); }
 
     @Override
     public HabitacionDAO getHabitacionDAO() {
@@ -14,10 +11,7 @@ public class MySQLDAOFactory extends DAOFactory {
     }
 
     @Override
-    public ReservaDAO getReservaDAO() {
-        // La Persona 4 cambiará esto por: return new ReservaDAOImpl();
-        return null;
-    }
+    public ReservaDAO getReservaDAO() { return new ReservaDAOImpl(); }
 
     @Override
     public HotelDAO getHotelDAO() {

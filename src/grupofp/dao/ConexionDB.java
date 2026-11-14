@@ -40,19 +40,6 @@ public class ConexionDB {
         return conexion;
     }
 
-    // Hacer prueba de connexión y si funciona borrar en el siguiente push a la rama main
-    public static void main(String[] args) {
-        try {
-            java.sql.Connection con = ConexionDB.getConexion();
-            if (con != null && !con.isClosed()) {
-                System.out.println("Éxito, La conexión con MySQL funciona perfectamente.");
-                ConexionDB.cerrarConexion();
-            }
-        } catch (java.sql.SQLException e) {
-            System.err.println("Fallo en la conexión: " + e.getMessage());
-            System.err.println("Revisa tu usuario, contraseña, o si olvidaste importar el .jar de MySQL Connector.");
-        }
-    }
     public static void cerrarConexion() {
         if (conexion != null) {
             try {

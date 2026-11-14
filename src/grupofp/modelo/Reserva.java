@@ -1,7 +1,8 @@
 package grupofp.modelo;
 
-import java.util.List;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 public class Reserva implements ICalculable {
     private int idReserva;
@@ -16,15 +17,26 @@ public class Reserva implements ICalculable {
     private Hotel hotel;
     private List<Habitacion> habitaciones;
 
-    public Reserva(int idReserva, int noches, double precioNoche, int numeroHabitaciones, Cliente cliente, Hotel hotel,
-            List<Habitacion> habitaciones) {
+    public Reserva(int idReserva, LocalDate fechaEntrada, LocalDate fechaSalida, int cantidadPersonas,
+                   double precioNoche, int numeroHabitaciones, Cliente cliente, Hotel hotel,
+                   List<Habitacion> habitaciones) {
         this.idReserva = idReserva;
-        this.noches = noches;
+        this.fechaEntrada = fechaEntrada;
+        this.fechaSalida = fechaSalida;
+        this.cantidadPersonas = cantidadPersonas;
+        this.noches = calcularNoches(fechaEntrada, fechaSalida);
         this.precioNoche = precioNoche;
         this.numeroHabitaciones = numeroHabitaciones;
         this.cliente = cliente;
         this.hotel = hotel;
         this.habitaciones = habitaciones;
+    }
+
+    private int calcularNoches(LocalDate entrada, LocalDate salida) {
+        if (entrada == null || salida == null) {
+            return 0;
+        }
+        return (int) ChronoUnit.DAYS.between(entrada, salida);
     }
 
     public int getIdReserva() {
@@ -57,6 +69,32 @@ public class Reserva implements ICalculable {
 
     public void setNumeroHabitaciones(int numeroHabitaciones) {
         this.numeroHabitaciones = numeroHabitaciones;
+    }
+
+    public LocalDate getFechaEntrada() {
+        return fechaEntrada;
+    }
+
+    public void setFechaEntrada(LocalDate fechaEntrada) {
+        this.fechaEntrada = fechaEntrada;
+        this.noches = calcularNoches(this.fechaEntrada, this.fechaSalida);
+    }
+
+    public LocalDate getFechaSalida() {
+        return fechaSalida;
+    }
+
+    public void setFechaSalida(LocalDate fechaSalida) {
+        this.fechaSalida = fechaSalida;
+        this.noches = calcularNoches(this.fechaEntrada, this.fechaSalida);
+    }
+
+    public int getCantidadPersonas() {
+        return cantidadPersonas;
+    }
+
+    public void setCantidadPersonas(int cantidadPersonas) {
+        this.cantidadPersonas = cantidadPersonas;
     }
 
     public Cliente getCliente() {

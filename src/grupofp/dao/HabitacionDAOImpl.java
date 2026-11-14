@@ -5,152 +5,205 @@ import grupofp.modelo.HabitacionEstandar;
 import grupofp.modelo.HabitacionSuperior;
 import grupofp.modelo.Suite;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HabitacionDAOImpl implements HabitacionDAO {
 
     @Override
-    public void crearHabitacion(Habitacion habitacion, int idHotel) {
-        String sql = "INSERT INTO habitaciones (numero, capacidad, precio_noche, categoria, detalle_extra, id_hotel) "
+    public void crearHabitacion(Habitacion habitacion, int idHotel) throws SQLException {
+        String sql = "INSERT INTO habitaciones (id_hotel, numero, capacidad, precio_noche, categoria, detalle_extra) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
+        Connection conn = ConexionDB.getConexion();
 
-        try (java.sql.Connection conn = ConexionDB.getConexion();
-             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, habitacion.getNumero());
-            pstmt.setInt(2, habitacion.getCapacidad());
-            pstmt.setDouble(3, habitacion.getPrecioNoche());
-            pstmt.setString(4, habitacion.getCategoria());
-            pstmt.setString(5, obtenerDetalleExtra(habitacion));
-            pstmt.setInt(6, idHotel);
-
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idHotel);
+            pstmt.setString(2, habitacion.getNumero());
+            pstmt.setInt(3, habitacion.getCapacidad());
+            pstmt.setDouble(4, habitacion.getPrecioNoche());
+            pstmt.setString(5, habitacion.getCategoria());
+            pstmt.setString(6, obtenerDetalleExtra(habitacion));
             pstmt.executeUpdate();
-            System.out.println("Habitación creada con éxito en la BBDD");
-        } catch (java.sql.SQLException e) {
-            System.err.println("Error al crear la habitación: " + e.getMessage());
         }
     }
 
     @Override
-    public Habitacion obtenerHabitacion(String numero) {
-        String sql = "SELECT * FROM habitaciones WHERE numero = ?";
-        Habitacion habitacion = null;
+    public Habitacion obtenerHabitacion(String numero, int idHotel) throws SQLException {
+        String sql = "SELECT * FROM habitaciones WHERE numero = ? AND id_hotel = ?";
+        Connection conn = ConexionDB.getConexion();
 
-        try (java.sql.Connection conn = ConexionDB.getConexion();
-             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, numero);
-            try (java.sql.ResultSet rs = pstmt.executeQuery()) {
+            pstmt.setInt(2, idHotel);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    habitacion = construirHabitacion(rs);
+                    return construirHabitacion(rs);
                 }
             }
-        } catch (java.sql.SQLException e) {
-            System.err.println("Error al obtener la habitación: " + e.getMessage());
         }
-        return habitacion;
+        return null;
     }
 
     @Override
-    public List<Habitacion> obtenerTodasLasHabitaciones() {
-        String sql = "SELECT * FROM habitaciones";
+    public List<Habitacion> obtenerTodasLasHabitaciones() throws SQLException {
+        String sql = "SELECT * FROM habitaciones ORDER BY id_hotel, numero";
+        Connection conn = ConexionDB.getConexion();
         List<Habitacion> lista = new ArrayList<>();
 
-        try (java.sql.Connection conn = ConexionDB.getConexion();
-             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
-             java.sql.ResultSet rs = pstmt.executeQuery()) {
+        try (PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
                 lista.add(construirHabitacion(rs));
             }
-        } catch (java.sql.SQLException e) {
-            System.err.println("Error al obtener habitaciones: " + e.getMessage());
         }
         return lista;
     }
 
     @Override
-    public void actualizarHabitacion(Habitacion habitacion) {
+    public List<Habitacion> obtenerHabitacionesPorHotel(int idHotel) throws SQLException {
+        String sql = "SELECT * FROM habitaciones WHERE id_hotel = ? ORDER BY numero";
+        Connection conn = ConexionDB.getConexion();
+        List<Habitacion> lista = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idHotel);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(construirHabitacion(rs));
+                }
+            }
+        }
+        return lista;
+    }
+
+    @Override
+    public List<Habitacion> obtenerHabitacionesDisponibles(int idHotel, LocalDate fechaEntrada, LocalDate fechaSalida) throws SQLException {
+        String sql = "SELECT * FROM habitaciones h "
+                + "WHERE h.id_hotel = ? "
+                + "AND h.id_habitacion NOT IN ( "
+                + "    SELECT rh.id_habitacion "
+                + "    FROM reserva_habitacion rh "
+                + "    INNER JOIN reservas r ON rh.id_reserva = r.id_reserva "
+                + "    WHERE r.fecha_entrada < ? AND r.fecha_salida > ? "
+                + ") ORDER BY h.numero";
+
+        Connection conn = ConexionDB.getConexion();
+        List<Habitacion> lista = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idHotel);
+            pstmt.setDate(2, Date.valueOf(fechaSalida));
+            pstmt.setDate(3, Date.valueOf(fechaEntrada));
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(construirHabitacion(rs));
+                }
+            }
+        }
+        return lista;
+    }
+
+    @Override
+    public List<Habitacion> obtenerHabitacionesPorCapacidad(int idHotel, int cantidadPersonas) throws SQLException {
+        String sql = "SELECT * FROM habitaciones WHERE id_hotel = ? AND capacidad >= ? ORDER BY capacidad, numero";
+        Connection conn = ConexionDB.getConexion();
+        List<Habitacion> lista = new ArrayList<>();
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idHotel);
+            pstmt.setInt(2, cantidadPersonas);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(construirHabitacion(rs));
+                }
+            }
+        }
+        return lista;
+    }
+
+    @Override
+    public void actualizarHabitacion(Habitacion habitacion, int idHotel) throws SQLException {
         String sql = "UPDATE habitaciones SET capacidad = ?, precio_noche = ?, categoria = ?, detalle_extra = ? "
-                + "WHERE numero = ?";
+                + "WHERE numero = ? AND id_hotel = ?";
+        Connection conn = ConexionDB.getConexion();
 
-        try (java.sql.Connection conn = ConexionDB.getConexion();
-             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, habitacion.getCapacidad());
             pstmt.setDouble(2, habitacion.getPrecioNoche());
             pstmt.setString(3, habitacion.getCategoria());
             pstmt.setString(4, obtenerDetalleExtra(habitacion));
             pstmt.setString(5, habitacion.getNumero());
-
+            pstmt.setInt(6, idHotel);
             pstmt.executeUpdate();
-            System.out.println("Habitación actualizada.");
-        } catch (java.sql.SQLException e) {
-            System.err.println("Error al actualizar la habitación: " + e.getMessage());
         }
     }
 
     @Override
-    public void eliminarHabitacion(String numero) {
-        String sql = "DELETE FROM habitaciones WHERE numero = ?";
+    public void eliminarHabitacion(String numero, int idHotel) throws SQLException {
+        String sql = "DELETE FROM habitaciones WHERE numero = ? AND id_hotel = ?";
+        Connection conn = ConexionDB.getConexion();
 
-        try (java.sql.Connection conn = ConexionDB.getConexion();
-             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, numero);
+            pstmt.setInt(2, idHotel);
             pstmt.executeUpdate();
-            System.out.println("Habitación eliminada.");
-        } catch (java.sql.SQLException e) {
-            System.err.println("Error al eliminar la habitación: " + e.getMessage());
         }
     }
 
     @Override
-    public List<Habitacion> buscarPorCategoriaStoredProcedure(String categoria) {
+    public List<Habitacion> buscarPorCategoriaStoredProcedure(String categoria) throws SQLException {
         String sql = "{CALL BuscarHabitacionesPorCategoria(?)}";
+        Connection conn = ConexionDB.getConexion();
         List<Habitacion> lista = new ArrayList<>();
 
-        try (java.sql.Connection conn = ConexionDB.getConexion();
-             java.sql.CallableStatement cstmt = conn.prepareCall(sql)) {
-
+        try (CallableStatement cstmt = conn.prepareCall(sql)) {
             cstmt.setString(1, categoria);
-            try (java.sql.ResultSet rs = cstmt.executeQuery()) {
+
+            try (ResultSet rs = cstmt.executeQuery()) {
                 while (rs.next()) {
                     lista.add(construirHabitacion(rs));
                 }
             }
-        } catch (java.sql.SQLException e) {
-            System.err.println("Error en el procedimiento almacenado: " + e.getMessage());
         }
         return lista;
     }
 
-    // Convierte las propiedades propias de cada tipo de habitación en el texto de la columna detalle_extra.
     private String obtenerDetalleExtra(Habitacion habitacion) {
-        if (habitacion instanceof HabitacionEstandar) {
-            return ((HabitacionEstandar) habitacion).getTipoCama();
-        } else if (habitacion instanceof HabitacionSuperior) {
-            return String.valueOf(((HabitacionSuperior) habitacion).isTieneBalcon());
-        } else if (habitacion instanceof Suite) {
-            return String.valueOf(((Suite) habitacion).isTieneJacuzzi());
+        if (habitacion instanceof HabitacionEstandar estandar) {
+            return estandar.getTipoCama();
+        } else if (habitacion instanceof HabitacionSuperior superior) {
+            return superior.isTieneBalcon() ? "Con balcón" : "Sin balcón";
+        } else if (habitacion instanceof Suite suite) {
+            return suite.isTieneJacuzzi() ? "Con jacuzzi" : "Sin jacuzzi";
         }
-        return null;
+        return "";
     }
 
-    // Crea el objeto del tipo correcto (Suite, Superior o Estándar) a partir de una fila de la tabla.
-    private Habitacion construirHabitacion(java.sql.ResultSet rs) throws java.sql.SQLException {
+    private Habitacion construirHabitacion(ResultSet rs) throws SQLException {
         String numero = rs.getString("numero");
         int capacidad = rs.getInt("capacidad");
-        double precio = rs.getDouble("precio_noche");
+        double precioNoche = rs.getDouble("precio_noche");
         String categoria = rs.getString("categoria");
-        String detalle = rs.getString("detalle_extra");
+        String detalleExtra = rs.getString("detalle_extra");
 
-        if ("Suite".equalsIgnoreCase(categoria)) {
-            return new Suite(numero, capacidad, precio, Boolean.parseBoolean(detalle));
-        } else if ("Superior".equalsIgnoreCase(categoria)) {
-            return new HabitacionSuperior(numero, capacidad, precio, Boolean.parseBoolean(detalle));
-        }
-        return new HabitacionEstandar(numero, capacidad, precio, detalle);
+        return switch (categoria) {
+            case "Superior" -> new HabitacionSuperior(numero, capacidad, precioNoche,
+                    "Con balcón".equalsIgnoreCase(detalleExtra) || Boolean.parseBoolean(detalleExtra));
+            case "Suite" -> new Suite(numero, capacidad, precioNoche,
+                    "Con jacuzzi".equalsIgnoreCase(detalleExtra) || Boolean.parseBoolean(detalleExtra));
+            default -> new HabitacionEstandar(numero, capacidad, precioNoche, detalleExtra);
+        };
     }
 }

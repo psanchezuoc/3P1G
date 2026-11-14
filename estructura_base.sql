@@ -169,3 +169,37 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2026-11-13 11:45:56
+
+
+-- 1. Primera corrección de la estructura inicial
+ALTER TABLE habitaciones
+    ADD UNIQUE KEY uk_hotel_numero (id_hotel, numero);
+
+
+--2. Segunda corrección
+USE hotel_management_db;
+
+DROP TABLE IF EXISTS reserva_habitacion;
+DROP TABLE IF EXISTS reservas;
+
+CREATE TABLE reservas (
+                          id_reserva INT AUTO_INCREMENT PRIMARY KEY,
+                          id_cliente INT NOT NULL,
+                          id_hotel INT NOT NULL,
+                          fecha_entrada DATE NOT NULL,
+                          fecha_salida DATE NOT NULL,
+                          noches INT NOT NULL,
+                          cantidad_personas INT NOT NULL,
+                          importe_total DECIMAL(10, 2) NOT NULL,
+                          fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                          CONSTRAINT fk_reserva_cliente FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+                          CONSTRAINT fk_reserva_hotel FOREIGN KEY (id_hotel) REFERENCES hoteles(id_hotel)
+);
+
+CREATE TABLE reserva_habitacion (
+                                    id_reserva INT NOT NULL,
+                                    id_habitacion INT NOT NULL,
+                                    PRIMARY KEY (id_reserva, id_habitacion),
+                                    CONSTRAINT fk_rh_reserva FOREIGN KEY (id_reserva) REFERENCES reservas(id_reserva) ON DELETE CASCADE,
+                                    CONSTRAINT fk_rh_habitacion FOREIGN KEY (id_habitacion) REFERENCES habitaciones(id_habitacion)
+);

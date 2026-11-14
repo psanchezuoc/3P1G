@@ -1,124 +1,145 @@
 package grupofp.dao;
 
 import grupofp.modelo.Cliente;
-
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteDAOImpl implements ClienteDAO{
+public class ClienteDAOImpl implements ClienteDAO {
+
     @Override
-    public void crearCliente(Cliente cliente) {
+    public void crearCliente(Cliente cliente) throws SQLException {
         String sql = "INSERT INTO clientes (nombre, apellido, email) VALUES (?, ?, ?)";
+        Connection conn = ConexionDB.getConexion();
 
-        try (java.sql.Connection conn = ConexionDB.getConexion();
-             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
+        try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, cliente.getNombre());
             pstmt.setString(2, cliente.getApellido());
             pstmt.setString(3, cliente.getEmail());
-
             pstmt.executeUpdate();
-            System.out.println("Cliente creado con éxito en la BBDD");
-        } catch (java.sql.SQLException e){
-            System.err.println("Error al crear el cliente "+e.getMessage());
+
+            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    cliente.setIdCliente(generatedKeys.getInt(1));
+                }
+            }
         }
     }
 
     @Override
-    public Cliente obtenerCliente(int id) {
+    public Cliente obtenerCliente(int id) throws SQLException {
         String sql = "SELECT * FROM clientes WHERE id_cliente = ?";
+        Connection conn = ConexionDB.getConexion();
         Cliente cliente = null;
 
-        try(java.sql.Connection conn = ConexionDB.getConexion();
-            java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)){
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
-            try(java.sql.ResultSet rs = pstmt.executeQuery()){
+
+            try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     int idCliente = rs.getInt("id_cliente");
                     String nombre = rs.getString("nombre");
                     String apellido = rs.getString("apellido");
                     String email = rs.getString("email");
-                    cliente = new Cliente(id, nombre, apellido, email);
+                    cliente = new Cliente(idCliente, nombre, apellido, email);
                 }
             }
-        }catch (java.sql.SQLException e){
-            System.err.println("Error al obtener el cliente: "+e.getMessage());
         }
         return cliente;
     }
 
     @Override
-    public List<Cliente> obtenerTodosLosClientes() {
+    public List<Cliente> obtenerTodosLosClientes() throws SQLException {
         String sql = "SELECT * FROM clientes";
-        List<Cliente> lista = new java.util.ArrayList<>();
+        Connection conn = ConexionDB.getConexion();
+        List<Cliente> lista = new ArrayList<>();
 
-        try (java.sql.Connection conn = ConexionDB.getConexion();
-             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
-             java.sql.ResultSet rs = pstmt.executeQuery()) {
+        try (PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
                 int idCliente = rs.getInt("id_cliente");
                 String nombre = rs.getString("nombre");
                 String apellido = rs.getString("apellido");
                 String email = rs.getString("email");
-                Cliente c = new Cliente(idCliente, nombre, apellido, email);
-                lista.add(c);
+                lista.add(new Cliente(idCliente, nombre, apellido, email));
             }
-        } catch (java.sql.SQLException e) {
-            System.err.println("Error al obtener clientes: " + e.getMessage());
         }
         return lista;
     }
 
     @Override
-    public void actualizarCliente(Cliente cliente) {
+    public void actualizarCliente(Cliente cliente) throws SQLException {
         String sql = "UPDATE clientes SET nombre = ?, apellido = ?, email = ? WHERE id_cliente = ?";
+        Connection conn = ConexionDB.getConexion();
 
-        try (java.sql.Connection conn = ConexionDB.getConexion();
-             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, cliente.getNombre());
             pstmt.setString(2, cliente.getApellido());
             pstmt.setString(3, cliente.getEmail());
-            pstmt.setInt(4, cliente.getIdCliente()); // Asegúrate de que este 'getId' es correcto
-
+            pstmt.setInt(4, cliente.getIdCliente());
             pstmt.executeUpdate();
-            System.out.println("Cliente actualizado.");
-        } catch (java.sql.SQLException e) {
-            System.err.println("Error al actualizar el cliente: " + e.getMessage());
         }
     }
 
     @Override
-    public void eliminarCliente(int id) {
+    public void eliminarCliente(int id) throws SQLException {
         String sql = "DELETE FROM clientes WHERE id_cliente = ?";
+        Connection conn = ConexionDB.getConexion();
 
-        try (java.sql.Connection conn = ConexionDB.getConexion();
-             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
-            System.out.println("Cliente eliminado.");
-        } catch (java.sql.SQLException e) {
-            System.err.println("Error al eliminar el cliente: " + e.getMessage());
         }
     }
 
     @Override
-    public void buscarPorApellidoStoredProcedure(String apellido) {
+    public List<Cliente> buscarPorApellidoStoredProcedure(String apellido) throws SQLException {
         String sql = "{CALL BuscarClientePorApellido(?)}";
+        Connection conn = ConexionDB.getConexion();
+        List<Cliente> lista = new ArrayList<>();
 
-        try (java.sql.Connection conn = ConexionDB.getConexion();
-             java.sql.CallableStatement cstmt = conn.prepareCall(sql)) {
-
+        try (CallableStatement cstmt = conn.prepareCall(sql)) {
             cstmt.setString(1, apellido);
-            try (java.sql.ResultSet rs = cstmt.executeQuery()) {
-                System.out.println("Resultados de la búsqueda por apellido '" + apellido + "':");
+
+            // El procedimiento almacenado debe devolver todas las columnas de la tabla clientes
+            try (ResultSet rs = cstmt.executeQuery()) {
                 while (rs.next()) {
-                    System.out.println("- " + rs.getString("nombre") + " " + rs.getString("email"));
+                    int idCliente = rs.getInt("id_cliente");
+                    String nombre = rs.getString("nombre");
+                    String apellidoRes = rs.getString("apellido");
+                    String email = rs.getString("email");
+                    lista.add(new Cliente(idCliente, nombre, apellidoRes, email));
                 }
             }
-        } catch (java.sql.SQLException e) {
-            System.err.println("Error en el procedimiento almacenado: " + e.getMessage());
         }
+        return lista;
+    }
+
+    @Override
+    public Cliente obtenerClientePorEmail(String email) throws SQLException {
+        String sql = "SELECT * FROM clientes WHERE email = ?";
+        Connection conn = ConexionDB.getConexion();
+        Cliente cliente = null;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, email);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    int idCliente = rs.getInt("id_cliente");
+                    String nombre = rs.getString("nombre");
+                    String apellido = rs.getString("apellido");
+                    String emailRes = rs.getString("email");
+                    cliente = new Cliente(idCliente, nombre, apellido, emailRes);
+                }
+            }
+        }
+        return cliente;
     }
 }

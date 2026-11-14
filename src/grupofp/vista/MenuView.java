@@ -3,13 +3,16 @@ package grupofp.vista;
 import grupofp.controlador.ClienteController;
 import grupofp.controlador.HabitacionController;
 import grupofp.controlador.ReservasController;
-import grupofp.modelo.Datos;
+import grupofp.dao.ClienteDAO;
+import grupofp.dao.ConexionDB;
+import grupofp.dao.DAOFactory;
+import grupofp.dao.HabitacionDAO;
+import grupofp.dao.ReservaDAO;
 import grupofp.modelo.Hotel;
 
 public class MenuView {
     private final Consola consola;
     private final Hotel hotel;
-    private final Datos datos;
 
     private final ClienteView clienteView;
     private final HabitacionView habitacionView;
@@ -18,20 +21,20 @@ public class MenuView {
     public MenuView() {
         this.consola = new Consola();
         this.hotel = new Hotel(1, "Hotel BCN", "Barcelona");
-        this.datos = new Datos(); // La base de datos centralizada
 
-        // Creamos los controladores inyectándoles los mismos datos
-        ClienteController clienteCtrl = new ClienteController(datos);
-        HabitacionController habitacionCtrl = new HabitacionController(datos);
-        ReservasController reservasCtrl = new ReservasController(datos);
+        DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        ClienteDAO clienteDAO = factory.getClienteDAO();
+        HabitacionDAO habitacionDAO = factory.getHabitacionDAO();
+        ReservaDAO reservaDAO = factory.getReservaDAO();
 
-        // Conectamos cada vista estrictamente con su controlador
+        ClienteController clienteCtrl = new ClienteController(clienteDAO);
+        HabitacionController habitacionCtrl = new HabitacionController(habitacionDAO, hotel.getIdHotel());
+        ReservasController reservasCtrl = new ReservasController(reservaDAO, clienteDAO, habitacionDAO, hotel.getIdHotel());
+
         this.clienteView = new ClienteView(clienteCtrl, consola);
         this.habitacionView = new HabitacionView(habitacionCtrl, consola);
         this.reservasView = new ReservasView(reservasCtrl, consola, hotel);
     }
-
-    // Aquí debajo mantienes tu método iniciar() intacto...
 
     public void iniciar() {
         int opcion;
@@ -47,7 +50,10 @@ public class MenuView {
                 case 1 -> clienteView.mostrarMenu();
                 case 2 -> habitacionView.mostrarMenu();
                 case 3 -> reservasView.mostrarMenu();
-                case 0 -> System.out.println("Hasta pronto!");
+                case 0 -> {
+                    ConexionDB.cerrarConexion();
+                    System.out.println("Conexion cerrada. Hasta pronto!");
+                }
                 default -> System.out.println("Opcion no valida.");
             }
         } while (opcion != 0);
