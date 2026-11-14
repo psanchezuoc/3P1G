@@ -10,8 +10,7 @@ public class MySQLDAOFactory extends DAOFactory {
 
     @Override
     public HabitacionDAO getHabitacionDAO() {
-        // La Persona 3 cambiará esto por: return new HabitacionDAOImpl();
-        return null;
+        return new HabitacionDAOImpl();
     }
 
     @Override
