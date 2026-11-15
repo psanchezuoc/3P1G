@@ -18,7 +18,8 @@ import java.sql.SQLException;
 /**
  * Menú principal. Todos los DAO se obtienen a través de la factoría (DAOFactory),
  * de modo que la vista y los controladores no dependen del motor de base de datos.
- * El hotel activo se carga desde la base de datos (ya no está escrito en el código).
+ * El hotel activo se elige entre los de la base de datos (ya no está escrito en el código).
+ * Clientes y hoteles se gestionan sin hotel activo; habitaciones y reservas lo necesitan.
  */
 public class MenuView {
     private final Consola consola;
@@ -58,33 +59,35 @@ public class MenuView {
             return;
         }
 
-        if (!seleccionarHotel()) {
-            ConexionDB.cerrarConexion();
-            System.out.println("No hay ningún hotel seleccionado. Saliendo.");
-            return;
-        }
-
         int opcion;
         do {
-            System.out.println("\n========== " + hotel.getNombre().toUpperCase()
-                    + " (" + hotel.getCiudad() + ") ==========");
+            System.out.println("\n========== CADENA HOTELERA ==========");
+            System.out.println(hotel == null
+                    ? "Hotel activo: ninguno (eligelo con la opcion 5)"
+                    : "Hotel activo: " + hotel.getNombre() + " (" + hotel.getCiudad() + ")");
             System.out.println("1. Gestion de clientes");
-            System.out.println("2. Gestion de habitaciones");
-            System.out.println("3. Gestion de reservas");
+            System.out.println("2. Gestion de habitaciones del hotel activo");
+            System.out.println("3. Gestion de reservas del hotel activo");
             System.out.println("4. Gestion de hoteles");
-            System.out.println("5. Cambiar de hotel");
+            System.out.println("5. Seleccionar / cambiar hotel activo");
             System.out.println("0. Salir");
             opcion = consola.pedirEntero("Elige una opcion: ");
 
             switch (opcion) {
                 case 1 -> clienteView.mostrarMenu();
-                case 2 -> habitacionView.mostrarMenu();
-                case 3 -> reservasView.mostrarMenu();
+                case 2 -> {
+                    if (hayHotelActivo()) {
+                        habitacionView.mostrarMenu();
+                    }
+                }
+                case 3 -> {
+                    if (hayHotelActivo()) {
+                        reservasView.mostrarMenu();
+                    }
+                }
                 case 4 -> {
                     hotelView.mostrarMenu();
-                    if (!refrescarHotelActivo()) {
-                        opcion = 0;
-                    }
+                    refrescarHotelActivo();
                 }
                 case 5 -> seleccionarHotel();
                 case 0 -> { }
@@ -96,47 +99,44 @@ public class MenuView {
         System.out.println("Conexion cerrada. Hasta pronto!");
     }
 
-    /**
-     * Pide al usuario el hotel con el que trabajar. Si no hay ninguno,
-     * ofrece crearlo. Devuelve false si no se ha podido seleccionar ninguno.
-     */
-    private boolean seleccionarHotel() {
-        while (true) {
-            System.out.println("\n--- SELECCION DE HOTEL ---");
-            if (!hotelView.listarHoteles()) {
-                if (!consola.pedirSiNo("¿Quieres registrar un hotel ahora? (s/n): ")) {
-                    return hotel != null;
-                }
-                Hotel nuevo = hotelView.registrarHotel();
-                if (nuevo != null) {
-                    cargarHotel(nuevo);
-                    return true;
-                }
-                continue;
-            }
+    /** Habitaciones y reservas siempre pertenecen a un hotel: sin hotel activo no se puede entrar. */
+    private boolean hayHotelActivo() {
+        if (hotel == null) {
+            System.out.println("Primero selecciona un hotel con la opcion 5 (o registralo en la opcion 4).");
+            return false;
+        }
+        return true;
+    }
 
-            int id = consola.pedirEntero("ID del hotel con el que quieres trabajar: ");
-            try {
-                cargarHotel(hotelCtrl.buscarHotelPorId(id));
-                return true;
-            } catch (DatosInvalidosException e) {
-                System.out.println("Error: " + e.getMessage());
-            }
+    /** Muestra los hoteles de la base de datos y deja elegir el hotel activo. */
+    private void seleccionarHotel() {
+        System.out.println("\n--- SELECCION DE HOTEL ---");
+        if (!hotelView.listarHoteles()) {
+            System.out.println("Registra primero un hotel en la opcion 4 (Gestion de hoteles).");
+            return;
+        }
+        int id = consola.pedirEntero("ID del hotel con el que quieres trabajar: ");
+        try {
+            cargarHotel(hotelCtrl.buscarHotelPorId(id));
+        } catch (DatosInvalidosException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
     /**
      * Tras volver del menú de hoteles, recarga el hotel activo por si se ha
-     * modificado o eliminado. Devuelve false si ya no queda ningún hotel.
+     * modificado o eliminado.
      */
-    private boolean refrescarHotelActivo() {
+    private void refrescarHotelActivo() {
+        if (hotel == null) {
+            return;
+        }
         try {
-            cargarHotel(hotelCtrl.buscarHotelPorId(hotel.getIdHotel()));
-            return true;
+            hotel = hotelCtrl.buscarHotelPorId(hotel.getIdHotel());
+            cargarHotel(hotel);
         } catch (DatosInvalidosException e) {
-            System.out.println("El hotel activo ya no existe. Selecciona otro.");
+            System.out.println("El hotel activo se ha eliminado. Selecciona otro con la opcion 5.");
             hotel = null;
-            return seleccionarHotel();
         }
     }
 
