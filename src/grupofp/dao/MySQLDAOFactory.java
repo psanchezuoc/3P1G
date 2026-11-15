@@ -14,8 +14,5 @@ public class MySQLDAOFactory extends DAOFactory {
     public ReservaDAO getReservaDAO() { return new ReservaDAOImpl(); }
 
     @Override
-    public HotelDAO getHotelDAO() {
-        // La Persona 5 cambiará esto por: return new HotelDAOImpl();
-        return null;
-    }
+    public HotelDAO getHotelDAO() { return new HotelDAOImpl(); }
 }

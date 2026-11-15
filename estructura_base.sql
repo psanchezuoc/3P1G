@@ -176,7 +176,7 @@ ALTER TABLE habitaciones
     ADD UNIQUE KEY uk_hotel_numero (id_hotel, numero);
 
 
---2. Segunda corrección
+-- 2. Segunda corrección
 USE hotel_management_db;
 
 DROP TABLE IF EXISTS reserva_habitacion;

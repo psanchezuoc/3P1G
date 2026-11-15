@@ -2,6 +2,7 @@ package grupofp.modelo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,7 +30,9 @@ class ReservaTest {
     }
 
     private Reserva crearReserva(int noches, double precioNoche, int numeroHabitaciones) {
-        return new Reserva(1, noches, precioNoche, numeroHabitaciones, cliente, hotel, habitaciones);
+        LocalDate entrada = LocalDate.of(2026, 1, 10);
+        return new Reserva(1, entrada, entrada.plusDays(noches), 2,
+                precioNoche, numeroHabitaciones, cliente, hotel, habitaciones);
     }
 
     @Test

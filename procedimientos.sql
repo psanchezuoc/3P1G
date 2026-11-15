@@ -36,3 +36,33 @@ BEGIN
 ORDER BY apellido, nombre;
 END //
 DELIMITER ;
+
+-- =========================================================
+-- Procedimientos almacenados del módulo Hoteles (Persona 5)
+-- =========================================================
+USE hotel_management_db;
+
+-- Alta de hotel: inserta y devuelve el ID autonumérico generado como fila de resultado
+-- (se evita un parámetro OUT porque el driver JDBC necesita permisos extra de metadatos para leerlo).
+DROP PROCEDURE IF EXISTS InsertarHotel;
+
+DELIMITER //
+CREATE PROCEDURE InsertarHotel(IN p_nombre VARCHAR(100), IN p_ciudad VARCHAR(100))
+BEGIN
+    INSERT INTO hoteles (nombre, ciudad) VALUES (p_nombre, p_ciudad);
+    SELECT LAST_INSERT_ID() AS id_hotel;
+END //
+DELIMITER ;
+
+-- Búsqueda de hoteles por ciudad (coincidencia parcial).
+DROP PROCEDURE IF EXISTS BuscarHotelesPorCiudad;
+
+DELIMITER //
+CREATE PROCEDURE BuscarHotelesPorCiudad(IN p_ciudad VARCHAR(100))
+BEGIN
+    SELECT id_hotel, nombre, ciudad
+    FROM hoteles
+    WHERE ciudad LIKE CONCAT('%', p_ciudad, '%')
+    ORDER BY ciudad, nombre;
+END //
+DELIMITER ;
