@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <!-- Nombre de la unidad de persistencia que usará JPAUtil -->
+    <persistence-unit name="hotelPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Lista de clases del modelo que van a representar tablas -->
+        <class>grupofp.modelo.Hotel</class>
+        <class>grupofp.modelo.Cliente</class>
+        <class>grupofp.modelo.Habitacion</class>
+        <class>grupofp.modelo.HabitacionEstandar</class>
+        <class>grupofp.modelo.HabitacionSuperior</class>
+        <class>grupofp.modelo.Suite</class>
+        <class>grupofp.modelo.Reserva</class>
+
+        <properties>
+            <!-- Credenciales de conexión a MySQL (iguales que en config.properties) -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hotel_management_db?useSSL=false&amp;serverTimezone=UTC"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="Mad78951230"/>
+
+            <!-- Muestra en consola las consultas SQL que Hibernate fabrica automáticamente -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+            <!-- Comprueba que las clases coinciden con tus tablas actuales sin modificarlas -->
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+        </properties>
+    </persistence-unit>
+</persistence>
