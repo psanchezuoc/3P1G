@@ -18,7 +18,5 @@ public class JPADAOFactory extends DAOFactory {
     }
 
     @Override
-    public HotelDAO getHotelDAO() {
-        return null;
-    }
+    public HotelDAO getHotelDAO() { return new HotelJPADAOImpl(); }
 }

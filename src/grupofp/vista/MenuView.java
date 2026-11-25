@@ -4,12 +4,7 @@ import grupofp.controlador.ClienteController;
 import grupofp.controlador.HabitacionController;
 import grupofp.controlador.HotelController;
 import grupofp.controlador.ReservasController;
-import grupofp.dao.ClienteDAO;
-import grupofp.dao.ConexionDB;
-import grupofp.dao.DAOFactory;
-import grupofp.dao.HabitacionDAO;
-import grupofp.dao.HotelDAO;
-import grupofp.dao.ReservaDAO;
+import grupofp.dao.*;
 import grupofp.modelo.DatosInvalidosException;
 import grupofp.modelo.Hotel;
 
@@ -39,7 +34,7 @@ public class MenuView {
     public MenuView() {
         this.consola = new Consola();
 
-        DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.JPA);
         this.clienteDAO = factory.getClienteDAO();
         this.habitacionDAO = factory.getHabitacionDAO();
         this.reservaDAO = factory.getReservaDAO();
@@ -52,10 +47,11 @@ public class MenuView {
 
     public void iniciar() {
         try {
-            ConexionDB.getConexion();
-        } catch (SQLException e) {
+            // Inicializa la conexión leyendo persistence.xml y cierra esa sesión de comprobación
+            JPAUtil.getEntityManager().close();
+        } catch (Exception e) {
             System.out.println("No se pudo conectar con la base de datos: " + e.getMessage());
-            System.out.println("Revisa config.properties y que el servidor MySQL esté en marcha.");
+            System.out.println("Revisa src/META-INF/persistence.xml y que el servidor MySQL esté en marcha.");
             return;
         }
 
@@ -95,7 +91,7 @@ public class MenuView {
             }
         } while (opcion != 0);
 
-        ConexionDB.cerrarConexion();
+        JPAUtil.cerrar();
         System.out.println("Conexion cerrada. Hasta pronto!");
     }
 

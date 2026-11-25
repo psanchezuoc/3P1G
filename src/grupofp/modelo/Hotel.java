@@ -1,9 +1,23 @@
 package grupofp.modelo;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "hoteles")
 public class Hotel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_hotel")
     private int idHotel;
+
+    @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "ciudad")
     private String ciudad;
+
+    public Hotel() {}
 
     public Hotel(int idHotel, String nombre, String ciudad) {
         this.idHotel = idHotel;
