@@ -1,10 +1,27 @@
 package grupofp.modelo;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "clientes")
 public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "id_cliente")
     private int idCliente;
+
+    @Column(name = "nombre", nullable = false)
     private String nombre;
+
+    @Column(name = "apellido", nullable = false)
     private String apellido;
+
+    @Column(name = "email", nullable = false)
     private String email;
+
+    public Cliente(){}
+
 
     public Cliente(int idCliente, String nombre, String apellido, String email) {
         this.idCliente = idCliente;

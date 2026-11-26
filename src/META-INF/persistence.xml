@@ -20,9 +20,9 @@
         <properties>
             <!-- Credenciales de conexión a MySQL (iguales que en config.properties) -->
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hotel_management_db?useSSL=false&amp;serverTimezone=UTC"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hotel_management_db?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value="*PONER PASSWORD REAL*"/>
+            <property name="jakarta.persistence.jdbc.password" value="123"/>
 
             <!-- Muestra en consola las consultas SQL que Hibernate fabrica automáticamente -->
             <property name="hibernate.show_sql" value="true"/>

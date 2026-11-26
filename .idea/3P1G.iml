@@ -16,6 +16,6 @@
       </library>
     </orderEntry>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="hibernate.orm.core" level="project" />
+    <orderEntry type="library" exported="" name="hibernate.orm.core" level="project" />
   </component>
 </module>

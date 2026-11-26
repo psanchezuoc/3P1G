@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32388f67-2501-4352-8cdf-9940e29edb4f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/grupofp/dao/ClienteJPADAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/3P1G.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/3P1G.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grupofp/modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grupofp/modelo/Cliente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,20 +48,26 @@
   "keyToString": {
     "Application.ConexionDB.executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.PruebaClienteJPA.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Modulo__Clientes",
+    "git-widget-placeholder": "P2/orm-cliente",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.jshint": "true",
     "node.js.selected.package.jshint": "",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "advanced.settings"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.ConexionDB">
+  <component name="RunManager" selected="Application.PruebaClienteJPA">
     <configuration name="ConexionDB" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="grupofp.dao.ConexionDB" />
       <module name="3P1G" />
@@ -84,8 +94,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PruebaClienteJPA" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="grupofp.dao.PruebaClienteJPA" />
+      <module name="3P1G" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="grupofp.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PruebaClienteJPA" />
         <item itemvalue="Application.ConexionDB" />
         <item itemvalue="Application.Main" />
       </list>
@@ -111,5 +135,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
