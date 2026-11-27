@@ -4,7 +4,7 @@ public class JPADAOFactory extends DAOFactory {
 
     @Override
     public ClienteDAO getClienteDAO() {
-        return null; // Persona 2 (ClienteJPADAOImpl)
+        return new ClienteJPADAOImpl(); // Persona 2 (ClienteJPADAOImpl)
     }
 
     @Override
